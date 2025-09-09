@@ -9,6 +9,6 @@ for i in range(size):
         else:
             mas[i][j] = 0
 for row in mas:
-    for element in row:
-        print(element, " ", end="")
+    for a in row:
+        print(a, " ", end="")
     print()
