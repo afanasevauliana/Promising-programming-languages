@@ -1,5 +1,3 @@
-import array
-
 size = 12
 mas = [[0 for i in range(size)] for j in range(size)]
 for i in range(size):

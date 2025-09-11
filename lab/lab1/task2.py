@@ -1,6 +1,4 @@
-import array
 import random
-import math
 
 def check_max_value_input(max_value=10):
     while True:
