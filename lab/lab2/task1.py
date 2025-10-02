@@ -1,0 +1,6 @@
+my_line = input("Введите строку: ")
+cnt = my_line.count('.')
+new_line = my_line.replace('.', '')
+print(f"Введенная строка: {my_line}")
+print(f"Строка после удаления всех точек: {new_line}")
+print(f"количество удаленных символов: {cnt}")
