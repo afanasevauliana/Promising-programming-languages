@@ -16,19 +16,12 @@ class Example(QMainWindow):
         self.setCentralWidget(central_widget)
         main_layout = QVBoxLayout(central_widget)
         
-        # Верхняя панель с кнопками
         top_layout = QHBoxLayout()
-        
         btn1 = QPushButton('Построить график', self)
         btn1.clicked.connect(self.btn1_clicked)
         top_layout.addWidget(btn1)
-        
-        # Кнопка "Справка" с подсказкой
         self.info_btn = QPushButton('Справка', self)
-        self.info_btn.setToolTip('10 декабря 1868 года был установлен первый светофор в Лондоне возле здания Британского парламента. '\
-                                'Он использовал газовые фонари и управлялся вручную. '\
-                                'Его изобретатель — Джон Пик Найт. '\
-                                'Современные электрические светофоры появились в 1912 году в США.')
+        self.info_btn.setToolTip('10 декабря 1868 года был установлен первый светофор в Лондоне возле здания Британского парламента. Он использовал газовые фонари и управлялся вручную. Его изобретатель — Джон Пик Найт. Современные электрические светофоры появились в 1912 году в США.')
         self.info_btn.clicked.connect(self.show_info_message)
         self.info_btn.setStyleSheet("font-size: 14px; font-weight: bold; padding: 5px;")
         top_layout.addWidget(self.info_btn)
