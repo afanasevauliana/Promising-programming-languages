@@ -1,8 +1,11 @@
 def GCD(A, B):
-    if B == 0:
-        return A
+    a, b = abs(A), abs(B)
+    if a == b:
+        return a
+    elif a > b:
+        return GCD(a - b, b)
     else:
-        return GCD(B, A % B)
+        return GCD(a, b - a)
     
 while True:
     try:
