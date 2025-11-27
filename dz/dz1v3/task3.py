@@ -23,11 +23,11 @@ class Example(QMainWindow):
         self.info_btn = QPushButton('Справка', self)
         self.info_btn.setToolTip('10 декабря 1868 года был установлен первый светофор в Лондоне возле здания Британского парламента. Он использовал газовые фонари и управлялся вручную. Его изобретатель — Джон Пик Найт. Современные электрические светофоры появились в 1912 году в США.')
         self.info_btn.clicked.connect(self.show_info_message)
-        self.info_btn.setStyleSheet("font-size: 14px; font-weight: bold; padding: 5px;")
+        self.info_btn.setStyleSheet("font-size: 14px; font-weight: bold; padding: 5px;") # размер шрифта, жирный, отступы
         top_layout.addWidget(self.info_btn)
         
         self.graph_label = QLabel('График |sin(2x)| / (sinx) был построен', self)
-        self.graph_label.setStyleSheet("font-size: 18px; font-weight: bold; color: blue;")
+        self.graph_label.setStyleSheet("font-size: 18px; font-weight: bold; color: yellow;")
         self.graph_label.setAlignment(Qt.AlignCenter)
         self.graph_label.hide()
         top_layout.addWidget(self.graph_label)
@@ -119,7 +119,6 @@ class Example(QMainWindow):
         x = np.linspace(0.1, 4*np.pi, 1000)
         with np.errstate(divide='ignore', invalid='ignore'):
             y = np.abs(np.sin(2*x)) / np.sin(x)
-            y = np.where(np.isinf(y), np.nan, y)
         ax = self.figure.add_subplot(111)
         ax.plot(x, y, 'b-', linewidth=2)
         ax.set_xlabel('x')
