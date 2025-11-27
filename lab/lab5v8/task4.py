@@ -8,7 +8,7 @@ p = image.width * 0.8
 n = image.height * 0.8
 image = image.crop((l, v, p, n))
 
-image = image.convert('L')
+image = image.convert('1')
 
 draw = ImageDraw.Draw(image)
 font = ImageFont.truetype("arial.ttf", 70)
