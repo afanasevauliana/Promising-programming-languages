@@ -1,6 +1,3 @@
-# 2x - 3y + z = 2
-# 3x + y + 2z = 7
-# x + 2y + 3z = 3
 import numpy as np
 from scipy import linalg
 
