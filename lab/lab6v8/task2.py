@@ -25,7 +25,7 @@ class MyThread(threading.Thread):
     def run(self):
         print(f"Поток {self.thread_id} начал работу")
         
-        while True:  # ← добавить цикл для многократной работы
+        while True:
             i, j = self.find_next()
             if i == -1:
                 break  # работа закончилась
