@@ -23,7 +23,7 @@ class Example(QMainWindow):
         self.graph_label = QLabel('График |sin(2x)| / (sinx) был построен', self)
         self.graph_label.setStyleSheet("font-size: 18px; font-weight: bold; color: blue;")
         self.graph_label.setAlignment(Qt.AlignCenter)
-        self.graph_label.hide()
+        self.graph_label.hide() # надпись изначально скрыта
         top_layout.addWidget(self.graph_label)
         top_layout.addStretch()
         
@@ -46,7 +46,7 @@ class Example(QMainWindow):
         center_layout = QHBoxLayout(center_container)
         center_layout.addStretch()
         traffic_light_layout = QVBoxLayout()
-        self.color_group = QButtonGroup(self)
+        self.color_group = QButtonGroup(self) # группа кнопок светофора (может быть выбрана только одна из них)
         frame_size = 80
         frame_style = "background-color: white; border: 3px solid black; border-radius: 10px;"
         
