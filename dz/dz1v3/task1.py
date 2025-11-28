@@ -8,20 +8,20 @@ from PyQt5.QtCore import Qt
 
 class Example(QMainWindow):
     def __init__(self):
-        super().__init__()
-        self.initUI()
+        super().__init__() # вызов конструктора родительского класса
+        self.initUI() # вызов метода создания интерфейса
      
-    def initUI(self):
+    def initUI(self): # создание интерфейса
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
-        main_layout = QVBoxLayout(central_widget)
+        main_layout = QVBoxLayout(central_widget) # верт
         
         btn1 = QPushButton('Построить график', self)
         btn1.clicked.connect(self.btn1_clicked)
         main_layout.addWidget(btn1)
         
-        self.figure = Figure(figsize=(8, 6))
-        self.canvas = FigureCanvas(self.figure)
+        self.figure = Figure(figsize=(8, 6)) # фигура
+        self.canvas = FigureCanvas(self.figure) # холст для графика
         main_layout.addWidget(self.canvas)
         
         self.setMinimumSize(800, 600)
@@ -33,7 +33,7 @@ class Example(QMainWindow):
         with np.errstate(divide='ignore', invalid='ignore'):
             y = np.abs(np.sin(2*x)) / np.sin(x)
             y = np.where(np.isinf(y), np.nan, y)
-        ax = self.figure.add_subplot(111)
+        ax = self.figure.add_subplot(111) # оси для графика
         ax.plot(x, y, 'b-', linewidth=2)
         ax.set_xlabel('x')
         ax.set_ylabel('y')
