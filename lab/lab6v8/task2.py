@@ -15,8 +15,8 @@ class MyThread(threading.Thread):
 
     def find_next(self):
         with self.lock:
-            for i in range(self.C.shape[0]):      # все строки
-                for j in range(self.C.shape[1]):  # все столбцы (cij+1 если j<k)
+            for i in range(self.C.shape[0]): # все строки
+                for j in range(self.C.shape[1]): # все столбцы (cij+1 если j<k)
                     if self.C[i, j] is None:
                         self.C[i, j] = "calculating"
                         return i, j
@@ -31,32 +31,27 @@ class MyThread(threading.Thread):
                 break  # работа закончилась
                 
             print(f"Поток {self.thread_id} вычисляет С[{i}][{j}]")
-            # A.shape[0] = 5 (количество строк)
-            # A.shape[1] = 4 (количество столбцов)
+            # A.shape[0] = 4 (количество строк)
+            # A.shape[1] = 3 (количество столбцов)
             self.summ = 0
             for k in range(self.A.shape[1]):
                 self.summ += self.A[i, k] * self.B[k, j]
             time.sleep(0.1)
-            
-            # Записываем результат
             with self.lock:
-                self.C[i, j] = self.summ
+                self.C[i, j] = self.summ  # записываем результат
                 print(f"Поток {self.thread_id} завершил: C[{i}][{j}] = {self.summ}")
-        
-        # Сообщение о полном завершении работы потока
         with self.lock:
             self.completed_threads.append(self.thread_id)
             print(f"Поток {self.thread_id}: завершил работу (сообщение о завершении)")
 
-def save_to_file(matrix, filename="protocol.txt"):
-    """Записывает результат в файл в отдельном потоке"""
+def save_to_file(matrix, filename="lab6task2.txt"):
     def save_worker():
         with open(filename, "a", encoding="utf-8") as f:
             f.write(f"\nРезультат умножения матриц (записано {time.strftime('%Y-%m-%d %H:%M:%S')}):\n")
             for i in range(matrix.shape[0]):
                 row = " ".join(f"{matrix[i, j]:8.1f}" for j in range(matrix.shape[1]))
                 f.write(row + "\n")
-            f.write("=" * 50 + "\n")
+            f.write("\n\n\n")
         print(f"Результат записан в файл {filename}")
     
     save_thread = threading.Thread(target=save_worker)
@@ -84,22 +79,17 @@ def main():
     lock = threading.Lock()
     completed_threads = []
     p = 3
-    print(f"\nЗапускаем {p} потока для вычисления матрицы C...")
-    
-    # Создаем и запускаем p потоков
+    print(f"\nЗапускаем {p} потока для вычисления матрицы C")
     threads = []
     start_time = time.time()
-    
     for i in range(p):
         thread = MyThread(i + 1, A, B, C, lock, completed_threads)
         threads.append(thread)
         thread.start()
 
-    # Ждем завершения всех потоков
     for thread in threads:
         thread.join()
-    
-    end_time = time.time()
+    end_time = time.time() # ждем завершения всех потоков
 
     print(f"\nВсе потоки завершили работу за {end_time - start_time:.2f} секунд")
     print(f"Порядок завершения потоков: {completed_threads}")
@@ -107,9 +97,8 @@ def main():
     print("\nРезультирующая матрица C = A × B:")
     print(C)
     
-    # Запускаем запись в файл в отдельном потоке
-    print("\nЗапускаем запись результата в файл...")
-    save_thread = save_to_file(C)
+    print("\nЗапускаем запись результата в файл")
+    save_thread = save_to_file(C) # запускаем запись в файл в отдельном потоке
     save_thread.join()
 
 if __name__ == "__main__":
