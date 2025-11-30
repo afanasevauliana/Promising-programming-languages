@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<videocards><videocard><name>GTX 1650</name><memory_size>4</memory_size><memory_type>GDDR6</memory_type><gpu_frequency>1665</gpu_frequency><memory_frequency>12000</memory_frequency><bus_width>128</bus_width></videocard><videocard><name>RTX 3060</name><memory_size>12</memory_size><memory_type>GDDR6</memory_type><gpu_frequency>1777</gpu_frequency><memory_frequency>15000</memory_frequency><bus_width>192</bus_width></videocard></videocards>

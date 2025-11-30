@@ -1,10 +1,3 @@
-# Задача 1.
-# Выберите любую папку на своем компьютере, имеющую
-# вложенные директории.
-# Выведите на печать в терминал и сохраните в файл txt названия
-# всех файлов с названием «main». Заархивируйте данную папку
-# средствами python.
-
 import os
 import shutil
 
@@ -34,7 +27,7 @@ with open(file, 'w', encoding='utf-8') as f:
         f.write(f"{i}\n")
     print("Результаты сохранены в файл results_dz2")
 
-archive_name = "dz_backup"
+archive_name = "dz2_task1"
 shutil.make_archive(archive_name, 'zip', dir)
 print(f"Создан архив: {archive_name}.zip")
 
