@@ -7,12 +7,12 @@ class myThread(threading.Thread):
         threading.Thread.__init__(self)
         self.name = name
         self.array = array
-        self.max_v = None
+        self.max_zn = None
     
     def run(self):
         print("Запуск: " + self.name)
-        self.max_value = find_max(self.array)
-        print(f"Максимум в {self.name}: {self.max_value}")
+        self.max_zn = find_max(self.array)
+        print(f"Максимум в {self.name}: {self.max_zn}")
         print("Завершение: " + self.name)
 
 def find_max(arr):
@@ -24,9 +24,9 @@ def find_max(arr):
 
 def process_worker(name, array, result_queue):
     print(f"Запуск: {name}")
-    max_value = find_max(array)
-    result_queue.put((name, max_value))
-    print(f"Максимум в {name}: {max_value}")
+    max_v = find_max(array)
+    result_queue.put((name, max_v))
+    print(f"Максимум в {name}: {max_v}")
     print(f"Завершение: {name}")
 
 def main():
